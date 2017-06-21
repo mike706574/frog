@@ -26,20 +26,20 @@
                                   [org.clojure/tools.namespace "0.2.11"]]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
   :cljsbuild {:builds {:test {:source-paths ["src" "test"]
-                              :compiler {:output-to     "target/testable.js"
-                                         :main          'frog.runner
+                              :compiler {:output-to "target/test.js"
+                                         :output-dir "target/test"
+                                         :main "frog.runner"
                                          :optimizations :simple}}
-                       :builds {:dev {:source-paths ["src"]
-                                      :figwheel {:on-jsload "frog.core/run"}
-                                      :compiler {:output-to "resources/public/js/client.js"
-                                                 :main "frog.core"
-                                                 :asset-path "js"
-                                                 :optimizations :none
-                                                 :source-map true
-                                                 :source-map-timestamp true}}}}}
+                       :dev {:source-paths ["src"]
+                             :figwheel {:on-jsload "frog.core/run"}
+                             :compiler {:output-to "resources/public/js/client.js"
+                                        :main "frog.core"
+                                        :asset-path "js"
+                                        :optimizations :none
+                                        :source-map true
+                                        :source-map-timestamp true}}}}
   :doo {:build "test"
-        :paths {:slimer "./node_modules/.bin/slimerjs"}
-        :alias {:default [:slimer]
+        :alias {:default [:phantom]
                 :browsers [:chrome :firefox]
                 :all [:browsers :headless]}}
   :clean-targets ^{:protect false} ["resources/public/js"])
